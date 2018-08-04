@@ -1,0 +1,55 @@
+body {
+    /* a suitable base font size for japanese - characters are often quite detailed so smaller sizes get very hard to read */
+    font-size: 16px;
+    /* Try to use Mincho if available */
+    font-family: "MS Mincho", "Yu Mincho", sans-serif ;
+    /* slightly nicer reading experience */
+    background-color: #fffefc;
+    color: rgb(40, 40, 40);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-orientation: upright;
+}
+
+.text-combine {
+    text-combine-upright: all;
+    -webkit-text-combine: horizontal;
+    -ms-text-combine-horizontal: all;
+}
+
+
+p {
+    /* seems to be about the right leading for Japanese reading material */
+    line-height: 1.7em;
+    font-size: 1em;
+}
+
+/* setup the structure for auto flowing "pages" of text */
+.book {
+    padding: 3em;
+    writing-mode: vertical-rl;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    height: auto;
+    position: relative;
+    /* move content up 1em to account for top margin on content (creates "page spacing")*/
+    top: -1em;
+}
+
+/* limit line length to 32 characters (well under the recommended maximum of 40) */
+.book > * {
+    /* margin to must be in rem to account for heading text sizes differing from body */
+    margin-top: 1rem;
+    max-height: 32em;
+}
+
+/* add leading one character space to pararaphs other than the first one */
+.book p:nth-of-type(n+2)::first-letter {
+    margin-top: 1em;
+} 
